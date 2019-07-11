@@ -69,6 +69,7 @@ public class BookTest {
 		session.close();	
 	}
 	
+	
 	@Test
 	public void test6() {
 		Session session=HibernateUtils.getSession();
