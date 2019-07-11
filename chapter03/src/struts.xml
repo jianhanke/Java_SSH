@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<struts>
+	<package name="struts2" namespace="/" extends="struts-default">
+	<interceptors>
+		<interceptor name="privilege" class="cn.itcast.interceptor.PrivilegeInterceptor" />
+		<interceptor-stack name="myStack">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="privilege" />
+		</interceptor-stack>
+	</interceptors>
+	
+	<action name="login" class="cn.itcast.action.LoginAction">
+		<result>/main.jsp</result>
+		<result name="input">/login.jsp</result>
+	</action>
+	<action name="book_*" class="cn.itcast.action.BookAction" method="{1}" >
+		<result>/success.jsp</result>
+		<result name="login">/login.jsp</result>
+		<interceptor-ref name="privilege" />
+	</action>
+	
+	</package>
+</struts>
