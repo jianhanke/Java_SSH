@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.multipart.maxSize" value="10000000"></constant>
+	<constant name="struts.custom.i18n.resources" value="cn.itcast.action.FileUploadMessage" />
+	
+	<package name="struts2" namespace="/" extends="struts-default">
+		<action name="fileUpload"  class="cn.itcast.action.FileUploadAction" >
+			<result name="success">/result.jsp</result>
+			<result name="input">/fileUpload.jsp</result>
+		<interceptor-ref name="defaultStack">
+			<param name="fileUpload.maximumSize">1000000</param>
+			<param name="fileUpload.allowedExtensions">.txt,.docx,.jpg</param>
+			<param name="fileUpload.allowedTypes">
+				text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/jpeg
+			</param>
+		</interceptor-ref>
+		</action>
+	<action name="simpledownload" class="cn.itcast.action.SimpleDownLoadAction">
+		<result type="stream">
+			<param name="contentType">text/plain</param>
+			<param name="contentDisposition">attachment;filename="struts2.txt"</param>
+			<param name="inputName">downloadFile</param>
+		</result>
+	</action>
+	
+	<action name="simpledownload2" 
+	        class="cn.itcast.action.SimpleDownLoad2Action">
+	  <result type="stream">
+        <!--文件类型 -->
+		<param name="contentType">${contentType}</param>
+        <!--指定文件名 -->
+		<param name="contentDisposition">
+		  attachment;filename=${filename}
+		</param>
+        <!--输入流 -->
+		<param name="inputName">downloadFile2</param>
+	  </result>
+	</action>
+		
+	</package>
+
+</struts>
