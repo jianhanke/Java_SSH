@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+	
+<hibernate-configuration>
+ <session-factory>
+	<!-- 指定方言 -->
+	<property name="hibernate.dialect">
+	    org.hibernate.dialect.MySQLDialect
+	</property>
+    <!--数据库驱动 -->
+	<property name="hibernate.connection.driver_class">
+	    com.mysql.cj.jdbc.Driver
+	</property>
+    <!--连接数据库的url -->
+	<property name="hibernate.connection.url">
+	    jdbc:mysql://localhost:3306/java?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false
+	</property>
+	<!--数据库的用户名 -->
+	<property name="hibernate.connection.username">
+		root
+	</property>
+	<!--数据库的密码 -->
+	<property name="hibernate.connection.password">
+		zhao/980931
+	</property>	
+	
+	
+     <!--其它配置 -->
+    <!-- 显示sql语句 -->
+	<property name="hibernate.show_sql">true</property>
+	<!-- 格式化sql语句 -->
+	<property name="format_sql">true</property> 
+	<property name="hibernate.hbm2ddl.auto">update</property> 
+	
+	<!-- 用来关联hbm配置文件 -->
+	<mapping resource="cn/itcast/domain/Customer.hbm.xml"/>
+ </session-factory>
+</hibernate-configuration>	
