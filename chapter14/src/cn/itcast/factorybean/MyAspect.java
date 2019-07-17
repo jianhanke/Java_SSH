@@ -2,8 +2,10 @@ package cn.itcast.factorybean;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
+import org.junit.Test;
 
 public class MyAspect implements MethodInterceptor{
+	
 	
 	public Object invoke(MethodInvocation mi)throws Throwable{
 		System.out.println("方法执行前");

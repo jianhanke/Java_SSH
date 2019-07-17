@@ -12,23 +12,15 @@
 	
 	<aop:config>
 		<aop:aspect ref="myAspect">
-			<!-- 3.1 配置切入点，通知最后增强哪些方法 -->
+			
 			<aop:pointcut expression="execution(* cn.itcast.dao..*.*(..))"
 				id="myPointCut" />
-			<!-- 3.2 关联通知Advice和切入点pointCut -->
-			<!-- #1前置通知 -->
 			<aop:before method="myBefore" pointcut-ref="myPointCut" />
-			<!-- #2后置通知,在方法返回之后执行，就可以获得返回值 returning属性：用于设置后置通知的第二个参数的名称,类型是Object -->
 			<aop:after-returning method="myAfterReturning"
 				pointcut-ref="myPointCut" returning="returnVal" />
-			<!-- #3环绕通知 -->
 			<aop:around method="myAround" pointcut-ref="myPointCut" />
-			<!-- #4 抛出通知：用于处理程序发生异常，就可以接收当前方法产生的异常 -->
-			<!-- * 注意：如果程序没有异常，将不会执行增强 -->
-			<!-- * throwing属性：用于设置通知第二个参数的名称，类型Throwable -->
 			<aop:after-throwing method="myAfterThrowing"
 				pointcut-ref="myPointCut" throwing="e" />
-			<!-- #5最终通知：无论程序发生任何事情，都将执行 -->
 			<aop:after method="myAfter" pointcut-ref="myPointCut" />
 		</aop:aspect>
 	</aop:config>

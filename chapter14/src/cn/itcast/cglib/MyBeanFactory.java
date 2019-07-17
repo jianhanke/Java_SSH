@@ -22,6 +22,7 @@ public class MyBeanFactory {
 				myAspect.myBefore();
 				Object obj=method.invoke(bookDao,args);
 				myAspect.myAfter();
+				System.out.println(obj+":");
 				return obj;
 			}	
 		});

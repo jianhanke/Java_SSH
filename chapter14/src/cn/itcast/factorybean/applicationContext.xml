@@ -7,16 +7,14 @@
 	<bean id="userDao" class="cn.itcast.dao.UserDaoImpl"></bean>
 	<bean id="myAspect" class="cn.itcast.factorybean.MyAspect"></bean>
 	
-	<bean id="userDaoProxy" 
-		class="org.springframework.aop.framework.ProxyFactoryBean">
+	<bean id="userDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
 		
-		<property name="interfaces" 
-			value="cn.itcast.dao.UserDao"></property>
+		<property name="interfaces"  value="cn.itcast.dao.UserDao"></property>
 		
 		<property name="target" ref="userDao"></property>
 		
 		<property name="interceptorNames" value="myAspect"></property>
 		
-		<property name="proxyTargetClass" value="true"></property>
+		<property name="proxyTargetClass" value="false"></property>
 	</bean>
 </beans>  

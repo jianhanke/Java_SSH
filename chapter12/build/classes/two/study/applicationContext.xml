@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ 	 http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 将指定对象配置给spring，让spring创建其的实例 -->
+	
+	<bean id="userDaoImpl" class="two.study.UserDaoImpl"> </bean>
+	
+	<bean id="userServiceImpl" class="two.study.UserServiceImpl">
+	
+	
+		 <!--  <property name="userDao" ref="userDaoImpl" />  -->
+		 <constructor-arg  index="0" ref="userDaoImpl"> </constructor-arg>
+
+	</bean>
+	
+</beans>
