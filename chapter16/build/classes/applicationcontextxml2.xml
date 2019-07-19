@@ -10,45 +10,42 @@
  	       http://www.springframework.org/schema/tx/spring-tx.xsd
  	       http://www.springframework.org/schema/aop 
  	      http://www.springframework.org/schema/aop/spring-aop.xsd">
-	<!-- 0 .1加载properties文件 -->
-	<context:property-placeholder location="classpath:c3p0-db.properties" />
-	<!-- 1 配置数据源，读取properties文件信息 -->
+ 	      
+ 	 <context:property-placeholder location="classpath:c3p0-db.properties" />
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${jdbc.driverClass}"></property>
 		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
 		<property name="user" value="${jdbc.user}"></property>
 		<property name="password" value="${jdbc.password}"></property>
 	</bean>
-	<!-- 2 配置jdbc模板 -->
+	
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	<!-- 3配置dao -->
+	
 	<bean id="accountDao" class="cn.itcast.dao.impl.AccountDaoImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
 	</bean>
-	<!-- 4配置service -->
+	
 	<bean id="accountService" class="cn.itcast.service.impl.AccountServiceImpl">
 		<property name="accountDao" ref="accountDao"></property>
 	</bean>
 	
-	<bean id="txManager"
+	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
-	</bean>
+	</bean>   
 	
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
-			<tx:method name="*" propagation="REQUIRED" isolation="DEFAULT"
-				read-only="false" />
+			<tx:method name="*" propagation="REQUIRED" islocation="DEFAULT" read-only="false" />
 		</tx:attributes>
 	</tx:advice>
-
-	<aop:config>
-		
-		<aop:pointcut expression="execution(* cn.itcast.service..*.*(..))"
-			id="txPointCut" />
 	
+	<aop:config>
+		<aop:pointcut expression="(* cn.itcast.service.*.*(..))" id="txPointCut"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut" />
 	</aop:config>
+ 	      
+ 	      
 </beans>

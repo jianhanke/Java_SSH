@@ -1,14 +1,20 @@
-package cn.itcast.jdbc;
+package two_study;
 
 
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
+import org.springframework.stereotype.Service;
 
+@Service("userDaoImpl")
 public class UserDaoImpl implements UserDao {
+	
+	@Resource(name="jdbcTemplate")
 	private JdbcTemplate jdbctmplate;
 
 	public JdbcTemplate getJdbctmplate() {

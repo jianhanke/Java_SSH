@@ -7,9 +7,9 @@ import cn.itcast.service.AccountService;
 public class Test {
 	public static void main(String[] args) {
 		
-		String xmlPath = "applicationContext.xml";
+		String xmlPath = "applicationContextxml2.xml";
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
-		AccountService accountService = (AccountService) applicationContext.getBean("accountServiceProxy");
+		AccountService accountService = (AccountService) applicationContext.getBean("accountService");
 		accountService.transfer("jack", "rose", 100);
 		System.out.println("ok");	
 

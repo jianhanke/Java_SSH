@@ -7,6 +7,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import two_study.User;
+import two_study.UserDao;
+
 public class JdbcTemplateTest {
 	
 	@Test

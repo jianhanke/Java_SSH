@@ -1,4 +1,4 @@
-package cn.itcast.jdbc;
+package two_study;
 
 public class User {
 	private Integer userid;
